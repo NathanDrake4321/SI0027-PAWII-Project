@@ -11,8 +11,10 @@ const PORT = 3000;
 app.use(express.json());
 
 let mahasiswa = [
-  { id: 1, nama: "Andi", jurusan: "Sistem Informasi" },
-  { id: 2, nama: "Budi", jurusan: "Informatika" },
+  { id: 1, nama: "Andi", jurusan: "Sistem Informasi", status : "aktif" },
+  { id: 2, nama: "Budi", jurusan: "Informatika", status : "non-aktif" },
+  { id: 3, nama: "Rita", jurusan: "Manajemen", status : "non-aktif" }
+  { id: 4, nama: "Dewi", jurusan: "Elektro", status : "aktif" }
 ];
 
 // TODO 1: GET /mahasiswa -> kirim seluruh data sebagai JSON
