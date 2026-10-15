@@ -1,25 +1,28 @@
 // Mini Project - Pertemuan 5: Middleware & Konfigurasi Backend
 // Melanjutkan RESTful API "mahasiswa" dari Pertemuan 3-4.
-//
-// TODO Mahasiswa: lengkapi setiap bagian sesuai komentar.
-// Jalankan dengan: npm install && npm start
-// Salin .env.example menjadi .env sebelum menjalankan.
-
-const express = require("express");
-const app = express();
 
 // TODO 1: muat variabel dari .env menggunakan dotenv
-// (require('dotenv').config() -- letakkan di baris paling atas)
+require('dotenv').config();
+
+const express = require("express");
+const cors = require("cors"); // Diperlukan untuk TODO 4
+const app = express();
 
 // TODO 2: gunakan process.env.PORT sebagai PORT, dengan fallback 3000
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // TODO 3: buat middleware kustom bernama `logger` yang mencatat
 // method, url, dan waktu (new Date().toISOString()) setiap request,
 // lalu daftarkan dengan app.use(logger) SEBELUM route lain
+const logger = (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+};
+app.use(logger);
 
 // TODO 4: import & gunakan middleware cors dari package 'cors'
 // agar frontend (mis. http://localhost:5173) dapat mengakses API ini
+app.use(cors());
 
 app.use(express.json());
 
@@ -40,6 +43,7 @@ app.get("/mahasiswa/:id", (req, res, next) => {
     res.json(data);
   } catch (err) {
     // TODO 5: teruskan error ini ke error-handling middleware
+    next(err);
   }
 });
 
@@ -70,6 +74,10 @@ app.delete("/mahasiswa/:id", (req, res) => {
 // (paling bawah, setelah seluruh route), dengan signature
 // (err, req, res, next) -> log err.stack, lalu balas status 500
 // dengan JSON { message: 'Terjadi kesalahan pada server' }
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Terjadi kesalahan pada server' });
+});
 
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);

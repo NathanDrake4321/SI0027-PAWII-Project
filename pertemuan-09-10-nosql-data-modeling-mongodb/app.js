@@ -12,11 +12,20 @@ const PORT = process.env.PORT || 3000;
 const mahasiswaRoutes = require("./routes/mahasiswaRoutes");
 const prodiRoutes = require("./routes/prodiRoutes");
 
+// Middleware parsing JSON
 app.use(express.json());
 
-// TODO: app.use('/mahasiswa', mahasiswaRoutes);
-// TODO: app.use('/prodi', prodiRoutes);
+// TODO 4: Mounting Route ke Express Application
+app.use("/api/mahasiswa", mahasiswaRoutes);
+app.use("/api/prodi", prodiRoutes);
 
-// TODO: mongoose.connect(process.env.MONGODB_URI)
-//   .then(() => { console.log('Terhubung ke MongoDB Atlas'); app.listen(PORT, ...); })
-//   .catch((err) => console.error('Gagal terhubung:', err.message));
+// Koneksi Mongoose ke MongoDB Atlas & Jalankan Express Server
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Terhubung ke MongoDB Atlas");
+    app.listen(PORT, () => {
+      console.log(`Server berjalan di http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => console.error("Gagal terhubung:", err.message));
