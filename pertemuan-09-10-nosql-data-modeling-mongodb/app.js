@@ -16,8 +16,8 @@ const prodiRoutes = require("./routes/prodiRoutes");
 app.use(express.json());
 
 // TODO 4: Mounting Route ke Express Application
-app.use("/api/mahasiswa", mahasiswaRoutes);
-app.use("/api/prodi", prodiRoutes);
+app.use("/mahasiswa", mahasiswaRoutes);
+app.use("/prodi", prodiRoutes);
 
 // Koneksi Mongoose ke MongoDB Atlas & Jalankan Express Server
 mongoose
