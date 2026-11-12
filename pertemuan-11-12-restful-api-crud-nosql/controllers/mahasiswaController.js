@@ -10,6 +10,11 @@ const MAX_LIMIT = 100;
 exports.getAll = async (req, res) => {
   // TODO: bangun object filter - jika req.query.prodiId ada, tambahkan ke filter
   const filter = {};
+  if (req.params.prodiId){
+    filter.prodiId = req.params.prodiId;
+  }
+
+  const data = await Mahasiswa.find (filter);
 
   // TODO: ambil page dari req.query.page (default 1, minimal 1)
   // TODO: ambil limit dari req.query.limit (default 10), batasi maksimum dengan MAX_LIMIT

@@ -1,8 +1,5 @@
-// Mini Project - Pertemuan 11-12: Koneksi MongoDB, Routing & Error Handling
-// TODO 3: lengkapi baris yang ditandai TODO di bawah ini.
-// Jalankan dengan: npm install && npm start (setelah menyalin .env.example menjadi .env)
-
-// TODO: require('express-async-errors') di baris PALING ATAS, sebelum require express
+// TODO 3: Lengkapi baris yang ditandai TODO
+require('express-async-errors'); // Dipasang paling atas agar menangkap error async otomatis
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
@@ -19,10 +16,14 @@ app.use(express.json());
 app.use("/mahasiswa", mahasiswaRoutes);
 app.use("/prodi", prodiRoutes);
 
-// TODO: pasang errorHandler dengan app.use(errorHandler) di sini, PALING AKHIR
+// TODO: pasang errorHandler di PALING AKHIR route
+app.use(errorHandler);
 
+// Atur timeout agar koneksi tidak membeku selamanya jika gagal
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI, {
+    serverSelectionTimeoutMS: 5000 // Batas tunggu 5 detik
+  })
   .then(() => {
     console.log("Terhubung ke MongoDB Atlas");
     app.listen(PORT, () => {
