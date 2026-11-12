@@ -10,6 +10,7 @@ import SearchBar from "./components/SearchBar";
 import MahasiswaList from "./components/MahasiswaList";
 import Tentang from "./components/Tentang";
 import Profile from "./components/Profile";
+import Footer from "./components/Footer";
 
 const DATA_MAHASISWA = [
   { id: 1, nama: "Andi", nim: "2024001" },
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<DaftarMahasiswaPage />} />
         <Route path="/tentang" element={<Tentang />} />
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/footer" element={<footer/>}/>
 
       </Routes>
     </div>
