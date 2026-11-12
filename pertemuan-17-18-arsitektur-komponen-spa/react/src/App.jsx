@@ -9,6 +9,7 @@ import PageHeader from "./components/PageHeader";
 import SearchBar from "./components/SearchBar";
 import MahasiswaList from "./components/MahasiswaList";
 import Tentang from "./components/Tentang";
+import Profile from "./components/Profile";
 
 const DATA_MAHASISWA = [
   { id: 1, nama: "Andi", nim: "2024001" },
@@ -40,6 +41,8 @@ function App() {
       <Routes>
         <Route path="/" element={<DaftarMahasiswaPage />} />
         <Route path="/tentang" element={<Tentang />} />
+        <Route path="/Profile" element={<Profile/>}/>
+        <Route></Route>
       </Routes>
     </div>
   );
