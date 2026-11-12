@@ -7,9 +7,11 @@ function PageHeader({ judul }) {
     <header className="page-header">
       <h1>{judul}</h1>
       <nav>
-        <Link to="/">Mobile Suit Gundam Seed</Link>
+        <Link to="/">Daftar Mahasiswa</Link>
         {" | "}
         <Link to="/tentang">About</Link>
+         {" | "}
+        <Link to="/profile">Profile</Link>
       </nav>
     </header>
   );

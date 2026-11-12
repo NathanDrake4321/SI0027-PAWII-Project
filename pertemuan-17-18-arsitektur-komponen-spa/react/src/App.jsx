@@ -28,7 +28,7 @@ function DaftarMahasiswaPage() {
 
   return (
     <>
-      {<SearchBar keyword={keyword} setKeyword={setkeyword} />} 
+      {<SearchBar keyword={keyword} onSearch={setkeyword} />} 
       {<MahasiswaList mahasiswa={mahasiswaTersaring} />} 
     </>
   );
@@ -41,8 +41,8 @@ function App() {
       <Routes>
         <Route path="/" element={<DaftarMahasiswaPage />} />
         <Route path="/tentang" element={<Tentang />} />
-        <Route path="/Profile" element={<Profile/>}/>
-        <Route></Route>
+        <Route path="/profile" element={<Profile/>}/>
+
       </Routes>
     </div>
   );
